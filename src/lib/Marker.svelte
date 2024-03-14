@@ -1,13 +1,20 @@
 <script lang="ts">
-	import { onMount, onDestroy, getContext, setContext } from 'svelte';
+	import { onMount, onDestroy, getContext, setContext, createEventDispatcher } from 'svelte';
 	import L from 'leaflet';
 
 	export let width: number;
 	export let height: number;
 	export let latLng: L.LatLngExpression;
+	export let city: string;
 
 	let marker: L.Marker | undefined;
 	let markerElement: HTMLElement;
+
+	const dispatch = createEventDispatcher();
+
+	const onMarkerClick = (e: any) => {
+		dispatch('click', city);
+	};
 
 	const { getMap }: { getMap: () => L.Map | undefined } = getContext('map');
 	const map = getMap();
@@ -34,7 +41,7 @@
 	});
 </script>
 
-<div bind:this={markerElement}>
+<div bind:this={markerElement} on:click={onMarkerClick} aria-role="button">
 	{#if marker}
 		<slot />
 	{/if}
