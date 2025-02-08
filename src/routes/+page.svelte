@@ -4,10 +4,10 @@
 	import Leaflet from '$lib/Leaflet.svelte';
 	import Marker from '$lib/Marker.svelte';
 	import Popup from '$lib/Popup.svelte';
-
+	import Messages from '$lib/Messages.svelte';
 	const initialView: LatLngExpression = [51.514244, 7.468429]; // Dortmund, Germany
 	const markerLocations: Array<LatLngExpression> = [
-		[51.513870009926, 7.473969975241] // ShipBit Office
+		[53.630278, 9.988333] // Aeropuerto de Hamburgo
 	];
 
 
@@ -34,7 +34,11 @@
 				</svg> -->
 				<img src="/animated-marker.gif" alt="marker" style="height:80px; width: 80px;" />
 				<Popup >
-					Puedo poner lo que quiera</Popup
+
+					<Messages />
+		
+					
+				</Popup
 				>
 			</Marker>
 		{/each}
