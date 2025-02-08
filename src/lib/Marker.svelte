@@ -12,6 +12,13 @@
 	const { getMap }: { getMap: () => L.Map | undefined } = getContext('map');
 	const map = getMap();
 
+
+	function handleClick() {
+
+		console.log("me has hecho click");
+	}
+
+
 	setContext('layer', {
 		// L.Marker inherits from L.Layer
 		getLayer: () => marker
@@ -25,6 +32,7 @@
 				iconSize: L.point(width, height)
 			});
 			marker = L.marker(latLng, { icon }).addTo(map);
+			marker.on('click', handleClick);
 		}
 	});
 

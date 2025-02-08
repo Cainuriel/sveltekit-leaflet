@@ -9,14 +9,18 @@
 	const markerLocations: Array<LatLngExpression> = [
 		[51.513870009926, 7.473969975241] // ShipBit Office
 	];
+
+
 </script>
 
+
+
 <div class="w-full h-screen">
-	<Leaflet view={initialView} zoom={14}>
+	<Leaflet view={initialView} zoom={4}>
 		{#each markerLocations as latLng}
 			<Marker {latLng} width={40} height={40}>
-				<!-- ShipBit Icon -->
-				<svg
+				<!-- PODEMOS USAR CUALQUIER TIPO DE IMAGEN-->
+				<!-- <svg
 					xmlns="http://www.w3.org/2000/svg"
 					xml:space="preserve"
 					style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2"
@@ -27,12 +31,14 @@
 						style="fill:#e9204f;fill-rule:nonzero"
 						transform="translate(0 -2.618)"
 					/>
-				</svg>
-
-				<Popup
-					>Like & Subscribe! This is a very loooooooooooong title and it has many characters.</Popup
+				</svg> -->
+				<img src="/animated-marker.gif" alt="marker" style="height:80px; width: 80px;" />
+				<Popup >
+					Puedo poner lo que quiera</Popup
 				>
 			</Marker>
 		{/each}
+
 	</Leaflet>
 </div>
+
