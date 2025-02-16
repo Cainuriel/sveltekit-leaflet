@@ -1,23 +1,20 @@
 <script lang="ts">
 	import { onMount, onDestroy, getContext, setContext } from 'svelte';
 	import L from 'leaflet';
-
 	export let width: number;
 	export let height: number;
 	export let latLng: L.LatLngExpression;
-
+	export let name: string;
+	export let action: string;
 	let marker: L.Marker | undefined;
 	let markerElement: HTMLElement;
 
 	const { getMap }: { getMap: () => L.Map | undefined } = getContext('map');
 	const map = getMap();
 
-
 	function handleClick() {
-
-		console.log("me has hecho click");
+		console.log(action, "en ", name);
 	}
-
 
 	setContext('layer', {
 		// L.Marker inherits from L.Layer
@@ -42,8 +39,16 @@
 	});
 </script>
 
-<div bind:this={markerElement}>
+
+
+<div class="map-marker" bind:this={markerElement}>
 	{#if marker}
 		<slot />
 	{/if}
 </div>
+
+<style>
+	.map-marker {
+		transform: translate(-50%, -50%);
+	}
+</style>

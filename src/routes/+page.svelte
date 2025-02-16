@@ -5,10 +5,21 @@
 	import Marker from '$lib/Marker.svelte';
 	import Popup from '$lib/Popup.svelte';
 	import Messages from '$lib/Messages.svelte';
+
+	interface MarkerData {
+		latLng: LatLngExpression;
+		name: string;
+		action: string;
+	}
+
 	const initialView: LatLngExpression = [51.514244, 7.468429]; // Dortmund, Germany
-	const markerLocations: Array<LatLngExpression> = [
-		[53.630278, 9.988333] // Aeropuerto de Hamburgo
-	];
+	const markerLocations: Array<MarkerData> = [
+		{ latLng: [53.630278, 9.988333], name: "Hamburgo", action: "tomarse una birra "},  // Aeropuerto de Hamburgo
+		{ latLng: [40.4722, -3.5608], name: "Madrid-Barajas", action: "explorar la ciudad" },
+		{ latLng: [41.7956, 12.25], name: "Roma-Fiumicino", action: "disfrutar de una pasta" },
+		{ latLng: [49.0097, 2.5478], name: "París-Charles de Gaulle", action: "visitar la Torre Eiffel" },
+		{ latLng: [51.4775, -0.4614], name: "Londres-Heathrow", action: "tomar un té inglés"}
+	]
 
 
 </script>
@@ -17,8 +28,8 @@
 
 <div class="w-full h-screen">
 	<Leaflet view={initialView} zoom={4}>
-		{#each markerLocations as latLng}
-			<Marker {latLng} width={40} height={40}>
+		{#each markerLocations as markInfo}
+			<Marker latLng={markInfo.latLng} width={40} height={40} name={markInfo.name} action={markInfo.action}>
 				<!-- PODEMOS USAR CUALQUIER TIPO DE IMAGEN-->
 				<!-- <svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +46,7 @@
 				<img src="/animated-marker.gif" alt="marker" style="height:80px; width: 80px;" />
 				<Popup >
 
-					<Messages />
+					<Messages name={markInfo.name} />
 		
 					
 				</Popup
